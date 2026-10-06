@@ -23,6 +23,12 @@ max2 (int a, int b)
 int
 clamp (int value, int lo, int hi)
 {
+  if (lo > hi)
+    {
+      int temp = lo;
+      lo = hi;
+      hi = temp;
+    }
   return min2 (max2 (value, lo), hi);
 }
 
@@ -43,7 +49,7 @@ rectangle_area (int length, int width)
 {
   if (length < 0 || width < 0)
     {
-      return 0; // Return an error code for invalid dimensions
+      return 0;
     }
   return length * width;
 }
@@ -53,7 +59,7 @@ rectangle_perimeter (int length, int width)
 {
   if (length < 0 || width < 0)
     {
-      return 0; // Return an error code for invalid dimensions
+      return 0;
     }
   return 2 * (length + width);
 }
@@ -63,7 +69,7 @@ box_volume (int length, int width, int height)
 {
   if (length < 0 || width < 0 || height < 0)
     {
-      return 0; // Return an error code for invalid dimensions
+      return 0;
     }
   return rectangle_area (length, width) * height;
 }
@@ -73,7 +79,7 @@ print_rectangle (int length, int width)
 {
   if (length < 0 || width < 0)
     {
-      return; // Exit the function for invalid dimensions
+      return;
     }
 
   printf ("Rectangle: %d x %d\n", length, width);
